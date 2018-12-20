@@ -23,7 +23,7 @@ const getPopularMovie = () => ({
 function* getPopularMovieSaga() {
 	try {
 		const result = yield call( requestPopularMovie )
-		yield put({type: 'GET_POPULAR_MOVIE', popularMovie: result.data.results } )
+		yield put({type: 'GET_POPULAR_MOVIE', popularMovieList: result.data.results } )
 	}	catch(error) {
 		console.log(error.message)
 	}
@@ -37,13 +37,15 @@ function* rootSaga() {
 const movieReducer = ( state = {}, action ) => {
 	switch( action.type ) {
 		case 'GET_LOAD_MOVIE':
+		console.log('action in GET_LOAD_MOVIE')
 			return {
-				movie: console.log('action in GET_LOAD_MOVIE') 	
+				movie: 123 	
 			}
 		case 'GET_POPULAR_MOVIE':
+		console.log('action in GET_POPULAR_MOVIE')
 			return {
-				movie: console.log('action in GET_POPULAR_MOVIE'),
-				popularMovie: action.popularMovie
+				movie: 456,
+				popularMovieList: action.popularMovieList
 			}	
 		default:
 			return state	
@@ -56,18 +58,18 @@ const rootReducer = combineReducers({ movie: movieReducer })
 const sagaMiddleware = createSagaMiddleware()
 
 // create store 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 const store = createStore(
 	rootReducer,
-	composeEnhancers(	applyMiddleware( sagaMiddleware )	)	
+	compose(	applyMiddleware( sagaMiddleware ), reduxDevTools	)	
 )
 
 sagaMiddleware.run( rootSaga )
 
 // mapStateToProps, mapDispatchToProps
 const mapStateToProps = state => ({
-	pop: state.popularMovie
+	popularMovieList: state.popularMovieList
 })
 
 const mapDispatchToProps = dispatch => ({
