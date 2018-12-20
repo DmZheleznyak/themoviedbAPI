@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import Popular from './Popular'
 
 class App extends Component {
 	constructor(props) {
@@ -8,15 +9,15 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-    this.props.getPopularMovie()
+		this.props.getPopularMovie()
   }
 	
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
+				<header>here header</header>
+				<Popular />
       </div>
     );
   }

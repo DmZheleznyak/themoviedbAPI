@@ -60,20 +60,22 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
 	rootReducer,
-	composeEnhancers(	
-		applyMiddleware( sagaMiddleware )
-	)	
+	composeEnhancers(	applyMiddleware( sagaMiddleware )	)	
 )
 
 sagaMiddleware.run( rootSaga )
 
 // mapStateToProps, mapDispatchToProps
-const mapDispatchToProps = ( dispatch ) => ({
+const mapStateToProps = state => ({
+	pop: state.popularMovie
+})
+
+const mapDispatchToProps = dispatch => ({
 	getPopularMovie: () => dispatch( getPopularMovie() )
 })
 
 // connect
-const ConnectApp = connect( null, mapDispatchToProps )(App)
+const ConnectApp = connect( mapStateToProps, mapDispatchToProps )(App)
 
 // render, provider
 ReactDOM.render(
