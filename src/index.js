@@ -37,7 +37,10 @@ function* rootSaga() {
 }
 
 // initialState
-const initialState = {}
+const initialState = {
+	movie: 1012,
+	popularMovieList: []
+}
 
 // create reducer with combineReducers
 const movieReducer = ( state = initialState, action ) => {
@@ -45,6 +48,7 @@ const movieReducer = ( state = initialState, action ) => {
 		case 'GET_LOAD_MOVIE':
 		console.log('GET_LOAD_MOVIE')
 			return {
+				...state,
 				movie: 123 	
 			}
 		case 'GET_POPULAR_MOVIE':

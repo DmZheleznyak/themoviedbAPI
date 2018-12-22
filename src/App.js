@@ -17,12 +17,11 @@ class App extends Component {
 	// 	} 
 	// }
 	
-	// render list movie when request will be success
   render() {
 		console.log(`PROPS IN RENDER`, this.props )
     return (
       <div className="App">
-				<header>here header</header>
+				<header>search field want to be here</header>
 				 									
       </div>
     );
