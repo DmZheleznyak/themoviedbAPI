@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import CartOfMovie from './cartOfMovie/cartOfMovie.js'
 
 class App extends Component {
 	state = {
@@ -22,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
 				<header>search field want to be here</header>
-				 									
+				<CartOfMovie popMovies={this.props.popularMovieList} /> 									
       </div>
     );
   }
