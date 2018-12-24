@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import Header from './header/Header'
 import CartOfMovie from './cartOfMovie/cartOfMovie.js'
 
 class App extends Component {
@@ -19,10 +20,9 @@ class App extends Component {
 	// }
 	
   render() {
-		console.log(`PROPS IN RENDER`, this.props )
     return (
       <div className="App">
-				<header>search field want to be here</header>
+				<Header>search field want to be here</Header>
 				<CartOfMovie popMovies={this.props.popularMovieList} /> 									
       </div>
     );
@@ -30,3 +30,4 @@ class App extends Component {
 }
 
 export default App;
+// https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c

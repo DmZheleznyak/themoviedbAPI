@@ -3,12 +3,14 @@ import React from 'react'
 import Card from '../../node_modules/@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
-import CardMedia from '@material-ui/core/CardMedia'
+import CardMedia from '@material-ui/core/CardMedia';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
 
 export default function cartOfMovie( props ) {
 
 	const popMovies = props.popMovies.map(popMovie => (
-		<Card style={{ width: `31%` }} >
+		<Card key={ popMovie.id } style={{ width: `32%` }} >
 			<CardActionArea>
 				<CardMedia
 					style={{ height: `200px` }}
@@ -17,6 +19,14 @@ export default function cartOfMovie( props ) {
 					/>				
 				<Typography gutterBottom variant="h4">{ popMovie.title }</Typography>
 				<Typography component="p">{ popMovie.overview }</Typography>
+				<CardActions>
+					<Button size="small" color="primary">
+						Share to Favourits
+					</Button>
+					<Button size="small" color="primary">
+						Read More
+					</Button>
+				</CardActions>
 			</CardActionArea>
 
 		</Card>
