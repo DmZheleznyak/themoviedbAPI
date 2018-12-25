@@ -12,7 +12,10 @@ import axios from 'axios'
 
 // API request
 const requestPopularMovie = () => 
-  axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&page=1')
+	axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&page=1')
+	
+const requestGenreMovie = () => 
+	axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&page=1&language=en-US')	
 	
 
 // write action
@@ -20,42 +23,66 @@ const getPopularMovie = () => ({
 	type: 'GET_LOAD_MOVIE'
 })
 
+// const getGenreMovie = () => ({
+// 	type: 'GET_LOAD_GENRE_MOVIE'
+// }) 
+
 
 // SAGA
 function* getPopularMovieSaga() {
 	try {
 		const result = yield call( requestPopularMovie )
-		console.log( result )
-		yield put({type: 'GET_POPULAR_MOVIE', popularMovieList: result.data.results })
+		yield put({
+			type: 'GET_POPULAR_MOVIE', 
+			popularMovieList: result.data.results 
+		})
 	}	catch(error) {
 		console.log(error.message)
+	}
+}
+function* getGenreMovieSaga() {
+	try {
+		const result = yield call( requestGenreMovie )
+		console.log( 'GENRE - ', result )
+		yield put({
+			type: 'GET_GENRE_LIST',
+			genreMovie: result.data.genres
+		})
+	} catch(error) {
+		console.log( error.message )
 	}
 }
 
 function* rootSaga() {
 	yield takeEvery('GET_LOAD_MOVIE', getPopularMovieSaga)
+	yield takeEvery('GET_LOAD_MOVIE', getGenreMovieSaga)
 }
 
 // initialState
 const initialState = {
 	movie: 1012,
-	popularMovieList: []
+	popularMovieList: [],
+	genreMovie: []
 }
 
 // create reducer with combineReducers
 const movieReducer = ( state = initialState, action ) => {
 	switch( action.type ) {
 		case 'GET_LOAD_MOVIE':
-		console.log('GET_LOAD_MOVIE')
 			return {
 				...state,
 				movie: 123 	
 			}
 		case 'GET_POPULAR_MOVIE':
-		console.log('GET_POPULAR_MOVIE')
 			return {
 				...state,
 				popularMovieList: action.popularMovieList
+			}
+		case 'GET_GENRE_LIST':	
+		console.log('GET_GENRE_LIST', action.genreMovie)
+			return {
+				...state,
+				genreMovie: action.genreMovie
 			}	
 		default:
 			return state	

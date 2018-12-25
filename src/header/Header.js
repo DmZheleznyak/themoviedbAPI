@@ -11,7 +11,7 @@ export default function Header() {
 	return (
 		<AppBar position="static" style={{ height: "50px" }}>
 			<Toolbar style={{ }} >
-				<Typography variant="h5" color="white" style={{  }}>
+				<Typography variant="h5" style={{  }}>
 					Star Collection
 				</Typography>
 				<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
