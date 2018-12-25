@@ -4,21 +4,22 @@ import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 
-import SearchIcon from './../img/baseline-image_search-24px.svg'
 import { Toolbar } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 export default function Header() {
 	return (
 		<AppBar position="static" style={{ height: "50px" }}>
-			<Toolbar>
-				<Typography style={{  }}>
+			<Toolbar style={{ }} >
+				<Typography variant="h5" color="white" style={{  }}>
 					Star Collection
 				</Typography>
-				<InputBase 
-					placeholder="search"
-					style={{ backgroundColor: "white", width: '40%' }}
-
-						/>
+				<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+					<SearchIcon style={{  }} />
+					<InputBase 
+						placeholder="search..."
+						style={{ backgroundColor: "white", width: '75%' }}	/>
+				</div>
 			</Toolbar>						
 		</AppBar>
 	)
