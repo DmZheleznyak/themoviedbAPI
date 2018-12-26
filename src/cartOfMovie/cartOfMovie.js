@@ -20,11 +20,11 @@ export default function cartOfMovie( props ) {
 				})
 		})
 		const listOfGenres = returnNameOfGenres.map(genre => (
-			<Typography gutterBottom> { genre } </Typography>
+			<Typography gutterBottom component="span"> { genre } </Typography>
 		))
 // ----------------------------------------------------------
 
-		return <Card key={ popMovie.id } style={{ width: `32%` }} >
+		return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} >
 			<CardActionArea>
 				<CardMedia
 					style={{ height: `200px` }}
