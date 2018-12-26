@@ -43,7 +43,6 @@ function* getPopularMovieSaga() {
 function* getGenreMovieSaga() {
 	try {
 		const result = yield call( requestGenreMovie )
-		console.log( 'GENRE - ', result )
 		yield put({
 			type: 'GET_GENRE_LIST',
 			genreMovie: result.data.genres
@@ -79,7 +78,6 @@ const movieReducer = ( state = initialState, action ) => {
 				popularMovieList: action.popularMovieList
 			}
 		case 'GET_GENRE_LIST':	
-		console.log('GET_GENRE_LIST', action.genreMovie)
 			return {
 				...state,
 				genreMovie: action.genreMovie
@@ -106,7 +104,10 @@ const store = createStore(
 sagaMiddleware.run( rootSaga )
 
 // mapStateToProps, mapDispatchToProps
-const mapStateToProps = state => ({ popularMovieList: state.popularMovieList })
+const mapStateToProps = state => ({ 
+	popularMovieList: state.popularMovieList,
+	genreMovie: state.genreMovie 
+})
 
 const mapDispatchToProps = dispatch => ({
 	getPopularMovie: () => dispatch( getPopularMovie() )

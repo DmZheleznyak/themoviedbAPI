@@ -23,7 +23,9 @@ class App extends Component {
     return (
       <div className="App">
 				<Header>search field want to be here</Header>
-				<CartOfMovie popMovies={this.props.popularMovieList} /> 									
+				<CartOfMovie 
+					popMovies={this.props.popularMovieList}
+					genreMovie={this.props.genreMovie} /> 									
       </div>
     );
   }

@@ -8,9 +8,23 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
 export default function cartOfMovie( props ) {
+	
+	const popMovies = props.popMovies.map(popMovie => {
+// get name (not id) of genre for each films ---------------
+		const returnNameOfGenres = []
+		popMovie.genre_ids.map(genre_id => {
+			props.genreMovie.map(genre => {
+					if (genre_id === genre.id) {
+						return returnNameOfGenres.push( genre.name ) 
+					}
+				})
+		})
+		const listOfGenres = returnNameOfGenres.map(genre => (
+			<Typography gutterBottom> { genre } </Typography>
+		))
+// ----------------------------------------------------------
 
-	const popMovies = props.popMovies.map(popMovie => (
-		<Card key={ popMovie.id } style={{ width: `32%` }} >
+		return <Card key={ popMovie.id } style={{ width: `32%` }} >
 			<CardActionArea>
 				<CardMedia
 					style={{ height: `200px` }}
@@ -18,6 +32,8 @@ export default function cartOfMovie( props ) {
 					title="Contemplative Reptile"
 					/>				
 				<Typography gutterBottom variant="h4">{ popMovie.title }</Typography>
+				<Typography gutterBottom variant="h6"> Genres: </Typography>
+				<Typography> {listOfGenres} </Typography>
 				<Typography component="p">{ popMovie.overview }</Typography>
 				<CardActions>
 					<Button size="small" color="primary">
@@ -30,7 +46,7 @@ export default function cartOfMovie( props ) {
 			</CardActionArea>
 
 		</Card>
-	))
+	})
 	
 	return (
 		<div style={{ width: `96%`, margin: '0 auto' }}>
