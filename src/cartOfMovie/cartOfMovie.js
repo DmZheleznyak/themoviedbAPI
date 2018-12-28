@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Card from '../../node_modules/@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -7,9 +8,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-export default function cartOfMovie( props ) {
+function cartOfMovie( props, dispatch ) {
 	
 	const popMovies = props.popMovies.map(popMovie => {
 // get name (not id) of genres for each films ---------------
@@ -25,14 +26,13 @@ export default function cartOfMovie( props ) {
 			<Typography gutterBottom component="span"> { genre } </Typography>
 		))
 // ----------------------------------------------------------
-
-		return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} >
+			
+return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} >
 			<CardActionArea>
 				<CardMedia
 					style={{ height: `200px` }}
 					image={ 'https://image.tmdb.org/t/p/w500' + popMovie.poster_path }  
-					title="Contemplative Reptile"
-					/>				
+					title="Contemplative Reptile"	/>				
 				<Typography gutterBottom variant="h4">{ popMovie.title }</Typography>
 				<Typography gutterBottom variant="h6"> Genres: </Typography>
 				<Typography> {listOfGenres} </Typography>
@@ -41,14 +41,20 @@ export default function cartOfMovie( props ) {
 					<Button size="small" color="primary">
 						Share to Favourits
 					</Button>
-					<Link to={`/page/${popMovie.id}`}>
-						<Button size="small" color="primary" onClick={() => console.log('click', popMovie.id)}>
+					<Link to={`/movie/${popMovie.id}`}>
+						<Button 
+							size="small" color="primary" 
+							// onClick={}			
+							// dispatch( {
+							// 		type: 'GET_ID_MOVIE',
+							// 		idMovie: popMovie.id
+							// 	})
+							 >
 							Read More
 						</Button>
 					</Link>	
 				</CardActions>
 			</CardActionArea>
-
 		</Card>
 	})
 	
@@ -60,3 +66,7 @@ export default function cartOfMovie( props ) {
 		</div>
 	)
 }
+
+const CartOfMovie = connect()(cartOfMovie)
+
+export default CartOfMovie

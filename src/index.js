@@ -9,9 +9,6 @@ import { Provider, connect } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
-// https://github.com/rajdee/redux-in-russian/blob/master/docs/advanced/UsageWithReactRouter.md
-import { BrowserRouter } from 'react-router-dom'
-
 
 // API request
 const requestPopularMovie = () => 
@@ -26,6 +23,7 @@ const getPopularMovie = () => ({
 	type: 'GET_LOAD_MOVIE'
 })
 //	USE WHEN NEED DETAILE INFO ABOUT MOVIE - ACTION
+// const saveChoosedIdMovieForGetInfo = 
 // const getInfoOneMovie = () => ({
 // 	type: 'GET_INFO_ONE_MOVIE'
 // })
@@ -68,7 +66,8 @@ function* rootSaga() {
 const initialState = {
 	movie: 1012,
 	popularMovieList: [],
-	genreMovie: []
+	genreMovie: [],
+	idMovie: null
 }
 
 // create reducer with combineReducers
@@ -88,7 +87,13 @@ const movieReducer = ( state = initialState, action ) => {
 			return {
 				...state,
 				genreMovie: action.genreMovie
-			}	
+			}
+		case 'GET_ID_MOVIE':
+		console.log(action.idMovie)
+			return {
+				...state,
+				idMovie: action.idMovie
+			}		
 		default:
 			return state	
 	}
