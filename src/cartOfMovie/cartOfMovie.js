@@ -7,10 +7,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
+import {Link} from 'react-router-dom'
+
 export default function cartOfMovie( props ) {
 	
 	const popMovies = props.popMovies.map(popMovie => {
-// get name (not id) of genre for each films ---------------
+// get name (not id) of genres for each films ---------------
 		const returnNameOfGenres = []
 		popMovie.genre_ids.map(genre_id => {
 			props.genreMovie.map(genre => {
@@ -39,9 +41,11 @@ export default function cartOfMovie( props ) {
 					<Button size="small" color="primary">
 						Share to Favourits
 					</Button>
-					<Button size="small" color="primary">
-						Read More
-					</Button>
+					<Link to={`/page/${popMovie.id}`}>
+						<Button size="small" color="primary" onClick={() => console.log('click', popMovie.id)}>
+							Read More
+						</Button>
+					</Link>	
 				</CardActions>
 			</CardActionArea>
 
@@ -49,7 +53,7 @@ export default function cartOfMovie( props ) {
 	})
 	
 	return (
-		<div style={{ width: `96%`, margin: '0 auto' }}>
+		<div style={{ width: `100%`, margin: '0 auto' }}>
 			<ul style={{ display: `flex`, flexWrap: `wrap`, justifyContent: 'space-between' }}>
 				{ popMovies }
 			</ul>

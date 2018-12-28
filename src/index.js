@@ -9,6 +9,9 @@ import { Provider, connect } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
+// https://github.com/rajdee/redux-in-russian/blob/master/docs/advanced/UsageWithReactRouter.md
+import { BrowserRouter } from 'react-router-dom'
+
 
 // API request
 const requestPopularMovie = () => 
@@ -22,6 +25,10 @@ const requestGenreMovie = () =>
 const getPopularMovie = () => ({ 
 	type: 'GET_LOAD_MOVIE'
 })
+//	USE WHEN NEED DETAILE INFO ABOUT MOVIE - ACTION
+// const getInfoOneMovie = () => ({
+// 	type: 'GET_INFO_ONE_MOVIE'
+// })
 
 // const getGenreMovie = () => ({
 // 	type: 'GET_LOAD_GENRE_MOVIE'
@@ -120,7 +127,7 @@ const ConnectApp = connect( mapStateToProps, mapDispatchToProps )(App)
 ReactDOM.render(
 
 	<Provider store={ store }>
-		<ConnectApp />
+			<ConnectApp />
 	</Provider>,
 
 	document.getElementById('root')
