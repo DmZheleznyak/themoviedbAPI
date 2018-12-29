@@ -10,19 +10,19 @@ import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom'
 
-function cartOfMovie( props, dispatch ) {
-	
+function cartOfMovie( props ) {
+
 	const popMovies = props.popMovies.map(popMovie => {
 // get name (not id) of genres for each films ---------------
-		const returnNameOfGenres = []
+		const genreNames = []
 		popMovie.genre_ids.map(genre_id => {
 			props.genreMovie.map(genre => {
 					if (genre_id === genre.id) {
-						return returnNameOfGenres.push( genre.name ) 
+						return genreNames.push( genre.name ) 
 					}
 				})
 		})
-		const listOfGenres = returnNameOfGenres.map(genre => (
+		const listOfGenres = genreNames.map(genre => (
 			<Typography gutterBottom component="span"> { genre } </Typography>
 		))
 // ----------------------------------------------------------
@@ -43,13 +43,7 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 					</Button>
 					<Link to={`/movie/${popMovie.id}`}>
 						<Button 
-							size="small" color="primary" 
-							// onClick={}			
-							// dispatch( {
-							// 		type: 'GET_ID_MOVIE',
-							// 		idMovie: popMovie.id
-							// 	})
-							 >
+							size="small" color="primary" >
 							Read More
 						</Button>
 					</Link>	
@@ -70,3 +64,6 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 const CartOfMovie = connect()(cartOfMovie)
 
 export default CartOfMovie
+
+// плохое название - genreNames
+// хорошее название - genreNames
