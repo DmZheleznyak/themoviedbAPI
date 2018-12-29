@@ -23,6 +23,11 @@ class App extends Component {
 				genreMovie={this.props.genreMovie} />
 		)
 
+		const InfoTheMovie = () => (
+			<InfoTheMovie 
+				getInfoMovie={this.props.getInfoMovie} />
+		)
+
     return (
 			<BrowserRouter>
 				<div className="App">

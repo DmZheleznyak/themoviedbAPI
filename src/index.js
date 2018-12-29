@@ -22,6 +22,10 @@ const requestGenreMovie = () =>
 const getPopularMovie = () => ({ 
 	type: 'GET_LOAD_MOVIE'
 })
+
+const getInfoMovie = () => ({
+	type: 'GET_LOAD_INFO_MOVIE'
+})
 //	USE WHEN NEED DETAILE INFO ABOUT MOVIE - ACTION
 
 // SAGA
@@ -51,6 +55,7 @@ function* getGenreMovieSaga() {
 function* rootSaga() {
 	yield takeEvery('GET_LOAD_MOVIE', getPopularMovieSaga)
 	yield takeEvery('GET_LOAD_MOVIE', getGenreMovieSaga)
+	// yield takeEvery('GET_LOAD_INFO_MOVIE', getInfoMovieSaga)
 }
 
 // initialState
@@ -58,7 +63,7 @@ const initialState = {
 	movie: 1012,
 	popularMovieList: [],
 	genreMovie: [],
-	idMovie: null
+	infoMovie: {}
 }
 
 // create reducer with combineReducers
@@ -74,10 +79,15 @@ const movieReducer = ( state = initialState, action ) => {
 				...state,
 				popularMovieList: action.popularMovieList
 			}
-		case 'GET_GENRE_LIST':	
+		case 'GET_GENRE_LIST':
 			return {
 				...state,
 				genreMovie: action.genreMovie
+			}	
+		case 'GET_INFO_MOVIE':
+			return {
+				...state,
+				infoMovie: action.infoMovie
 			}	
 		default:
 			return state	
@@ -107,7 +117,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	getPopularMovie: () => dispatch( getPopularMovie() )
+	getPopularMovie: () => dispatch( getPopularMovie() ),
+	getInfoMovie: () => dispatch( getInfoMovie() )
 })
 
 // connect
