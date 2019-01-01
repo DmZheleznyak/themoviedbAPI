@@ -11,13 +11,19 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 
 function cartOfMovie( props ) {
-
+// creat showcart of the movie
+// go to array  
 	const popMovies = props.popMovies.map(popMovie => {
 // get name (not id) of genres for each films ---------------
 		const genreNames = []
 		popMovie.genre_ids.map(genre_id => {
+// take our movie's genres id 
+// and equal with each id from all list genres			
 			props.genreMovie.map(genre => {
 					if (genre_id === genre.id) {
+// find name genre, what we need  
+// (not id, because after we render on start page)
+// and give to genreNames array						
 						return genreNames.push( genre.name ) 
 					}
 				})
@@ -38,7 +44,7 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 				<Typography> {listOfGenres} </Typography>
 				<Typography component="p">{ popMovie.overview }</Typography>
 				<CardActions>
-					<Button size="small" color="primary">
+					<Button size="small" color="primary" >
 						Share to Favourits
 					</Button>
 					<Link to={`/movie/${popMovie.id}`}>
@@ -64,6 +70,3 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 const CartOfMovie = connect()(cartOfMovie)
 
 export default CartOfMovie
-
-// плохое название - genreNames
-// хорошее название - genreNames

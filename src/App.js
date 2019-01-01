@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css';
 
 import Header from './header/Header'
-import CartOfMovie from './cartOfMovie/CartOfMovie'
+import CartOfMovie from './cartOfMovie/cartOfMovie'
 import InfoTheMovie from './infoTheMovie/InfoTheMovie'
 // https://github.com/rajdee/redux-in-russian/blob/master/docs/advanced/UsageWithReactRouter.md
-import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
 	state = {
@@ -23,7 +23,7 @@ class App extends Component {
 				genreMovie={this.props.genreMovie} />
 		)
 
-		const InfoTheMovie = () => (
+		const InfoMovie = () => (
 			<InfoTheMovie 
 				getInfoMovie={this.props.getInfoMovie} />
 		)
@@ -33,7 +33,7 @@ class App extends Component {
 				<div className="App">
 					<Route path='/' component={Header} />
 					<Route exact path='/' component={ListPopMovies} />
-					<Route path="/movie" component={InfoTheMovie} />							
+					<Route path="/movie" component={InfoMovie} />							
 				</div>
 			</BrowserRouter>
     );

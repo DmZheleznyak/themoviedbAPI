@@ -12,6 +12,8 @@ class InfoTheMovie extends Component {
 		const requestInfoMovie = () => 
 			axios.get(`https://api.themoviedb.org/3${this.props.location.pathname}?api_key=e842780f24447ce021759d2711fd23ce&language=en-US`)
 
+		console.log( requestInfoMovie )
+
 		function* getInfoMovieSaga() {
 			try {
 				const result = yield call( requestInfoMovie )
@@ -34,6 +36,7 @@ class InfoTheMovie extends Component {
 					// image={ 'https://image.tmdb.org/t/p/w500' + this.state.infoMovie.backdrop_path }
 					// title='backdrop_path'
 					/>
+					<p>Happy !</p>
 			</Card>
 		)
 	}
