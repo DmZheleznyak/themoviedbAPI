@@ -34,27 +34,23 @@ function cartOfMovie( props ) {
 // ----------------------------------------------------------
 			
 return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} >
-			<CardActionArea>
-				<CardMedia
-					style={{ height: `200px` }}
-					image={ 'https://image.tmdb.org/t/p/w500' + popMovie.poster_path }  
-					title="Contemplative Reptile"	/>				
-				<Typography gutterBottom variant="h4">{ popMovie.title }</Typography>
-				<Typography gutterBottom variant="h6"> Genres: </Typography>
-				<Typography> {listOfGenres} </Typography>
-				<Typography component="p">{ popMovie.overview }</Typography>
-				<CardActions>
-					<Button size="small" color="primary" >
-						Share to Favourits
-					</Button>
-					<Link to={`/movie/${popMovie.id}`}>
-						<Button 
-							size="small" color="primary" >
-							Read More
-						</Button>
-					</Link>	
-				</CardActions>
-			</CardActionArea>
+			<CardMedia
+				style={{ height: `200px` }}
+				image={ 'https://image.tmdb.org/t/p/w500' + popMovie.poster_path }  
+				title="Contemplative Reptile"	/>				
+			<Typography gutterBottom variant="h4">{ popMovie.title }</Typography>
+			<Typography gutterBottom variant="h6"> Genres: </Typography>
+			<Typography> {listOfGenres} </Typography>
+			<Typography component="p">{ popMovie.overview }</Typography>
+			<CardActions>
+				<Button size="small" color="primary" >
+					{/* Share to Favourits */}
+					Don't push
+				</Button>
+				<Link to={`/movie/${popMovie.id}`} onClick={()=> console.log('AU')}>
+					<Button size="small" color="primary">Read More</Button>
+				</Link>	
+			</CardActions>
 		</Card>
 	})
 	
