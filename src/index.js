@@ -55,7 +55,6 @@ function* getGenreMovieSaga() {
 function* rootSaga() {
 	yield takeEvery('GET_LOAD_MOVIE', getPopularMovieSaga)
 	yield takeEvery('GET_LOAD_MOVIE', getGenreMovieSaga)
-	// yield takeEvery('GET_LOAD_INFO_MOVIE', getInfoMovieSaga)
 }
 
 // initialState
@@ -85,6 +84,7 @@ const movieReducer = ( state = initialState, action ) => {
 				genreMovie: action.genreMovie
 			}	
 		case 'GET_INFO_MOVIE':
+		console.log(`action`, action)
 			return {
 				...state,
 				infoMovie: action.infoMovie

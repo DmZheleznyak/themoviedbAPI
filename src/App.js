@@ -23,17 +23,17 @@ class App extends Component {
 				genreMovie={this.props.genreMovie} />
 		)
 
-		const InfoMovie = () => (
-			<InfoTheMovie 
-				getInfoMovie={this.props.getInfoMovie} />
-		)
+		// const InfoMovie = () => (
+		// 	<InfoTheMovie 
+		// 		getInfoMovie={this.props.getInfoMovie} />
+		// )
 
     return (
 			<BrowserRouter>
 				<div className="App">
 					<Route path='/' component={Header} />
 					<Route exact path='/' component={ListPopMovies} />
-					<Route path="/movie" component={InfoMovie} />							
+					<Route path="/movie" component={InfoTheMovie} />							
 				</div>
 			</BrowserRouter>
     );

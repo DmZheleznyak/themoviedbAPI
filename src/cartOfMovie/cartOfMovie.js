@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Card from '../../node_modules/@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
+// import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
