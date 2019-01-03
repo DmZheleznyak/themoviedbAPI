@@ -21,18 +21,26 @@ class InfoTheMovie extends Component {
 	}
 
 	render() {
-		console.log(`state in render::`, this.state.dataMovie)
+		console.log(`state in render::`, this.state.dataMovie.genres)
+
+		const Genres = this.state.dataMovie.genres === undefined ? null :  this.state.dataMovie.genres.map( genre => (
+			<span> { genre.name } </span>
+		) )
+
 		return (
 			<Card>
 				<Typography variant='h2'>{ this.state.dataMovie.title }</Typography>
 				<CardMedia 
-					style={{ height: `350px` }}
+					style={{ margin: '0 auto', height: `350px`, width: '400px' }}
 					image={ 'https://image.tmdb.org/t/p/w500' + this.state.dataMovie.poster_path }
 					title = 'mainImg' />
 				<Typography component="p">
 					Budget: { this.state.dataMovie.budget }$, Vote: { this.state.dataMovie.vote_average }
 				</Typography>
-				<p>Happy !</p>
+				<Typography>
+					<span style={{ fontWeight: 'bold' }} >Genres:</span> { Genres }
+				</Typography>
+				<p> Enjoy your watch !</p>
 				
 			</Card>
 		)
