@@ -9,36 +9,69 @@ import Button from '@material-ui/core/Button';
 
 class InfoTheMovie extends Component {
 	state = {
-		dataMovie: {}
+		dataMovie: {},
+		recommendationMovies: []
 	}
 	componentDidMount() {
 
-		const requestInfoMovie = () => 
+		const getInfoMovie = () => 
 			axios.get(`https://api.themoviedb.org/3${this.props.location.pathname}?api_key=e842780f24447ce021759d2711fd23ce&language=en-US`)
 				.then( res => this.setState({ dataMovie: res.data }) )
+				.catch(err => console.log( err.message ))
 		
-		requestInfoMovie()		
+		getInfoMovie()
+		
+		const getRecommendation = () =>
+			axios.get(`https://api.themoviedb.org/3${this.props.location.pathname}/recommendations?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&page=1`)
+				.then( res => {	this.setState({ recommendationMovies: res.data.results }) })
+				.catch(err => console.log( err.message ))
+	
+		getRecommendation()
 	}
 
 	render() {
-		console.log(`state in render::`, this.state.dataMovie.genres)
+		console.log(`state in render::`, this.state)
 
 		const Genres = this.state.dataMovie.genres === undefined ? null :  this.state.dataMovie.genres.map( genre => (
 			<span> { genre.name } </span>
 		) )
+
+		const Recommendations = () => {
+			const showRecomandationMovies = []
+			for (let i = 0; i < 3; i++) {
+				console.log( this.state.recommendationMovies )
+				console.log( this.state.recommendationMovies[i] )
+				showRecomandationMovies.push( this.state.recommendationMovies[i].title )
+			}
+			return showRecomandationMovies
+		}
+// will show data like:
+// data-mounth-year : 22 january 2017
+		// const releaseDate = Date.parse(this.state.dataMovie.release_date)
+		// console.log(releaseDate)
 
 		return (
 			<Card>
 				<Typography variant='h2'>{ this.state.dataMovie.title }</Typography>
 				<CardMedia 
 					style={{ margin: '0 auto', height: `350px`, width: '400px' }}
-					image={ 'https://image.tmdb.org/t/p/w500' + this.state.dataMovie.poster_path }
+					image={ 'https://image.tmdb.org/t/p/w500' + this.state.dataMovie.backdrop_path }
 					title = 'mainImg' />
 				<Typography component="p">
 					Budget: { this.state.dataMovie.budget }$, Vote: { this.state.dataMovie.vote_average }
 				</Typography>
 				<Typography>
 					<span style={{ fontWeight: 'bold' }} >Genres:</span> { Genres }
+				</Typography>
+				<Typography component="p">
+					{ this.state.dataMovie.overview }
+					<Typography component="p">
+						Release Date: { this.state.dataMovie.release_date }
+					</Typography>		
+				</Typography>
+				<Typography component="p">
+					<span style={{ fontWeight: 'bold' }} >Recommendations:</span>
+					{ Recommendations }
 				</Typography>
 				<p> Enjoy your watch !</p>
 				
