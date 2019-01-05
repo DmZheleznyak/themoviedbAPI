@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 class InfoTheMovie extends Component {
 	state = {
 		dataMovie: {},
-		recommendationMovies: []
+		recomendationMovies: []
 	}
 	componentDidMount() {
 
@@ -23,28 +23,30 @@ class InfoTheMovie extends Component {
 		
 		const getRecommendation = () =>
 			axios.get(`https://api.themoviedb.org/3${this.props.location.pathname}/recommendations?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&page=1`)
-				.then( res => {	this.setState({ recommendationMovies: res.data.results }) })
+				.then( res => {	this.setState({ recomendationMovies: res.data.results }) })
 				.catch(err => console.log( err.message ))
 	
 		getRecommendation()
 	}
 
 	render() {
-		console.log(`state in render::`, this.state)
+		// console.log(`state in render::`, this.state)
 
 		const Genres = this.state.dataMovie.genres === undefined ? null :  this.state.dataMovie.genres.map( genre => (
-			<span> { genre.name } </span>
+			<span key={ genre.id } > { genre.name } </span>
 		) )
 
-		const Recommendations = () => {
-			const showRecomandationMovies = []
-			for (let i = 0; i < 3; i++) {
-				console.log( this.state.recommendationMovies )
-				console.log( this.state.recommendationMovies[i] )
-				showRecomandationMovies.push( this.state.recommendationMovies[i].title )
+		const recomendationMovies = []
+		for (let i = 0; i < 3; i++) {
+			if ( this.state.recomendationMovies[i] !== undefined  ) {
+				recomendationMovies.push( this.state.recomendationMovies[i].title )
 			}
-			return showRecomandationMovies
 		}
+		console.log(`recomendation- `, recomendationMovies)
+		const showRecomendationMovies = recomendationMovies.map( movie => (
+			<span> { movie } <br/></span>
+		))
+
 // will show data like:
 // data-mounth-year : 22 january 2017
 		// const releaseDate = Date.parse(this.state.dataMovie.release_date)
@@ -71,7 +73,7 @@ class InfoTheMovie extends Component {
 				</Typography>
 				<Typography component="p">
 					<span style={{ fontWeight: 'bold' }} >Recommendations:</span>
-					{ Recommendations }
+					{ showRecomendationMovies }
 				</Typography>
 				<p> Enjoy your watch !</p>
 				
