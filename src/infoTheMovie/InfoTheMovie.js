@@ -12,26 +12,23 @@ class InfoTheMovie extends Component {
 		dataMovie: {},
 		recomendationMovies: []
 	}
-	componentDidMount() {
 
+	componentDidMount() {
 		const getInfoMovie = () => 
 			axios.get(`https://api.themoviedb.org/3${this.props.location.pathname}?api_key=e842780f24447ce021759d2711fd23ce&language=en-US`)
 				.then( res => this.setState({ dataMovie: res.data }) )
-				.catch(err => console.log( err.message ))
-		
+				.catch(err => console.log( err.message ))	
 		getInfoMovie()
 		
 		const getRecommendation = () =>
 			axios.get(`https://api.themoviedb.org/3${this.props.location.pathname}/recommendations?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&page=1`)
 				.then( res => {	this.setState({ recomendationMovies: res.data.results }) })
 				.catch(err => console.log( err.message ))
-	
 		getRecommendation()
 	}
 
 	render() {
 		// console.log(`state in render::`, this.state)
-
 		const Genres = this.state.dataMovie.genres === undefined ? null :  this.state.dataMovie.genres.map( genre => (
 			<span key={ genre.id } > { genre.name } </span>
 		) )
@@ -42,7 +39,6 @@ class InfoTheMovie extends Component {
 				recomendationMovies.push( this.state.recomendationMovies[i].title )
 			}
 		}
-		console.log(`recomendation- `, recomendationMovies)
 		const showRecomendationMovies = recomendationMovies.map( movie => (
 			<span> { movie } <br/></span>
 		))
