@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography';
@@ -10,13 +11,12 @@ import Button from '@material-ui/core/Button';
 
 class Header extends Component {
 	state = {
-		searchField: ''
+		searchField: '',
+		showModal: false
 	}
 
 	onFormSubmit(event) {
 		event.preventDefault();
-		console.log(`event-`, event)
-		console.log('search. search')
 	}
 
 	onSearchFieldChange( event ) {
@@ -24,23 +24,36 @@ class Header extends Component {
 		this.setState({ searchField: event.target.value })
 	}
 
+	onButtonSearchClick() {
+		console.log(`this -`, this)
+		this.setState({ showModal: true })
+
+		// take search 
+		const getSearcMovies = () => 
+		axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&query=${this.state.searchField}&page=1&include_adult=false`)
+			.then( res => console.log( res ) )
+			.catch(err => console.log( err.message ))	
+		getSearcMovies()
+	}
+
 	render () {
 		return (
 			<AppBar position="static" style={{ height: "50px" }}>
-				<Toolbar style={{ }} >
-					<Typography variant="h5" style={{  }}>
+				<Toolbar>
+					<Typography variant="h5">
 						Star Collection
 					</Typography>
 					<form 
 						style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} 
 						onSubmit={ this.onFormSubmit }>
-						<SearchIcon style={{  }} />
+						<SearchIcon/>
 						<InputBase 
 							placeholder="search..."
 							style={{ backgroundColor: "white", width: '75%' }}
 							onChange={ this.onSearchFieldChange.bind(this) }	/>
 						<Button 
-							type="submit">Search</Button>
+							type="submit"
+							onClick={ this.onButtonSearchClick.bind(this) }>Search</Button>
 					</form>
 					<p> { this.state.searchField } </p>
 				</Toolbar>						
@@ -50,3 +63,16 @@ class Header extends Component {
 }
 
 export default Header;
+
+// later
+// const backdrop = () => (
+// 	this.state.showModal ? <div style={{
+// 		width: '100%',
+// 		height: '100%',
+// 		position: 'fixed',
+// 		zIndex: '100',
+// 		left: '0',
+// 		top: '0',
+// 		backgroundColor: 'rgba(0, 0, 0, 0.5)'
+// 	}}></div> : null
+// )
