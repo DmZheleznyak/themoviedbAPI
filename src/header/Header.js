@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import axios from 'axios'
 
 import AppBar from '@material-ui/core/AppBar'
@@ -27,6 +28,7 @@ class Header extends Component {
 	onButtonSearchClick() {
 		console.log(`this -`, this)
 		this.setState({ showModal: true })
+		console.log(`nameAsProps`, this.props.nameAsProps)
 
 		// take search 
 		const getSearcMovies = () => 
@@ -62,7 +64,11 @@ class Header extends Component {
 	}
 }
 
-export default Header;
+const mapStateToProps = state => ({
+	nameAsProps: state.popularMovieList
+})  
+
+export default connect(mapStateToProps)(Header);
 
 // later
 // const backdrop = () => (

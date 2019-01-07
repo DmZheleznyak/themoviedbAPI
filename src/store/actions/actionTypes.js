@@ -1,0 +1,6 @@
+export const GET_LOAD_MOVIE = 'GET_LOAD_MOVIE'
+export const GET_POPULAR_MOVIE = 'GET_POPULAR_MOVIE'
+
+export const GET_GENRE_LIST = 'GET_GENRE_LIST'
+
+export const GET_LOAD_INFO_MOVIE = 'GET_LOAD_INFO_MOVIE'

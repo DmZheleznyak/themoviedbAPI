@@ -26,7 +26,6 @@ const getPopularMovie = () => ({
 const getInfoMovie = () => ({
 	type: 'GET_LOAD_INFO_MOVIE'
 })
-//	USE WHEN NEED DETAILE INFO ABOUT MOVIE - ACTION
 
 // SAGA
 function* getPopularMovieSaga() {
@@ -83,12 +82,12 @@ const movieReducer = ( state = initialState, action ) => {
 				...state,
 				genreMovie: action.genreMovie
 			}	
-		case 'GET_INFO_MOVIE':
-		console.log(`action`, action)
-			return {
-				...state,
-				infoMovie: action.infoMovie
-			}	
+		// case 'GET_INFO_MOVIE':
+		// console.log(`action`, action)
+		// 	return {
+		// 		...state,
+		// 		infoMovie: action.infoMovie
+		// 	}	
 		default:
 			return state	
 	}
