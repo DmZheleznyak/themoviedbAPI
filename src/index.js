@@ -82,12 +82,6 @@ const movieReducer = ( state = initialState, action ) => {
 				...state,
 				genreMovie: action.genreMovie
 			}	
-		// case 'GET_INFO_MOVIE':
-		// console.log(`action`, action)
-		// 	return {
-		// 		...state,
-		// 		infoMovie: action.infoMovie
-		// 	}	
 		default:
 			return state	
 	}
