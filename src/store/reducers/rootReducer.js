@@ -1,6 +1,5 @@
+// import {  } from '../actions/actionCreators'
 
-
-// initialState
 const initialState = {
 	movie: 1012,
 	popularMovieList: [],
@@ -8,7 +7,6 @@ const initialState = {
 	infoMovie: {}
 }
 
-// create reducer with combineReducers
 const movieReducer = ( state = initialState, action ) => {
 	switch( action.type ) {
 		case 'GET_LOAD_MOVIE':
