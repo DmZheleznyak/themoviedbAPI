@@ -30,3 +30,16 @@ export function* getGenreMovieSaga() {
 		console.log( error.message )
 	}
 }
+
+// export function* getSearchMoviesSaga( request ) {
+// 	console.log( request )
+// 	try {
+// 		const result = yield call( request )
+// 		yield put({
+// 			type: 'GET_SEARCH_MOVIES',
+// 			searchMovies: result.data.results
+// 		})
+// 	} catch(error) {
+// 		console.log(error.message)
+// 	}
+// }

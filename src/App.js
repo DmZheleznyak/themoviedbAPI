@@ -7,6 +7,7 @@ import './App.css';
 import Header from './header/Header'
 import CartOfMovie from './cartOfMovie/cartOfMovie'
 import InfoTheMovie from './infoTheMovie/InfoTheMovie'
+import ListSearch from './listSearchMovies/ListSearch'
 // https://github.com/rajdee/redux-in-russian/blob/master/docs/advanced/UsageWithReactRouter.md
 
 import { getPopularMovie, getInfoMovie } from './store/actions/actionCreators'
@@ -32,6 +33,7 @@ class App extends Component {
 				<div className="App">
 					<Route path='/' component={Header} />
 					<Route exact path='/' component={ListPopMovies} />
+					<Route path='/search' component={ListSearch} />
 					<Route path="/movie" component={InfoTheMovie} />							
 				</div>
 			</BrowserRouter>

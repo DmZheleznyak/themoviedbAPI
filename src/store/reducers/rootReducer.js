@@ -4,7 +4,8 @@ const initialState = {
 	movie: 1012,
 	popularMovieList: [],
 	genreMovie: [],
-	infoMovie: {}
+	infoMovie: {},
+	// searchMovies: []
 }
 
 const movieReducer = ( state = initialState, action ) => {
@@ -23,7 +24,17 @@ const movieReducer = ( state = initialState, action ) => {
 			return {
 				...state,
 				genreMovie: action.genreMovie
-			}	
+			}
+		// case 'GET_LOAD_SEARCH_MOVIES':
+		// 		return {
+		// 			...state,
+		// 			movie: 777
+		// 		}	
+		// case 'GET_SEARCH_MOVIES':
+		// 	return {
+		// 		...state,
+		// 		searchMovies: action.searchMovies
+		// 	}		
 		default:
 			return state	
 	}

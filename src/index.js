@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 //https://codepen.io/BenSmith/pen/boapwY?editors=0010//
-
 import { Provider } from 'react-redux'
 import Store from './store/store'
 
