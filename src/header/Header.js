@@ -26,8 +26,6 @@ class Header extends Component {
 	}
 
 	onButtonSearchClick() {
-		// const searchFieldValue = this.state.searchField
-		// console.log(`searchFieldValue in Header: `, searchFieldValue )
 		const requestSearchMovies = () =>
 			axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&query=${this.state.searchField}&page=1&include_adult=false`)
 		this.props.getLoadSearchMovies( requestSearchMovies )
@@ -61,12 +59,8 @@ class Header extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	nameAsProps: state.popularMovieList
-})
-
 const mapDispatchToProps = dispatch => ({
-	getLoadSearchMovies: (requestSearchMovie) => dispatch( getLoadSearchMovies(requestSearchMovie) )
+	getLoadSearchMovies: requestSearchMovies => dispatch( getLoadSearchMovies(requestSearchMovies) )
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

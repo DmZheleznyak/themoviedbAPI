@@ -8,12 +8,10 @@ export const getInfoMovie = () => ({
     type: actionTypes.GET_LOAD_INFO_MOVIE
 })
 
-export const getLoadSearchMovies = (req) => {
-    console.log(`req:`, req)
-    return { 
+export const getLoadSearchMovies = req => ({
         type: actionTypes.GET_LOAD_SEARCH_MOVIES, 
-        requestSearchMovies: req }
-}
+        requestSearchMovies: req 
+})
 
 export const getSearchMovies = data => ({
     type: actionTypes.GET_SEARCH_MOVIES,

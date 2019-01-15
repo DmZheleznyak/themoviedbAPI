@@ -26,11 +26,11 @@ const movieReducer = ( state = initialState, action ) => {
 				...state,
 				genreMovie: action.genreMovie
 			}
-			case 'GET_LOAD_SEARCH_MOVIES':
-				return {
-					...state,
-					requestSearchMovie: action.requestSearchMovie
-				}
+		case 'GET_LOAD_SEARCH_MOVIES':
+			return {
+				...state,
+				requestSearchMovie: action.requestSearchMovie
+			}
 		case 'GET_SEARCH_MOVIES':
 			return {
 				...state,
