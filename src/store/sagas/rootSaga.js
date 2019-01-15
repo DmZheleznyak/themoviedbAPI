@@ -6,5 +6,5 @@ import * as actionTypes from '../actions/actionTypes'
 export default function* rootSaga() {
 	yield takeEvery(actionTypes.GET_LOAD_MOVIE, getPopularMovieSaga)
 	yield takeEvery(actionTypes.GET_LOAD_MOVIE, getGenreMovieSaga)
-	// yield takeEvery(actionTypes.GET_SEARCH_MOVIES, getSearchMoviesSaga)
+	yield takeEvery(actionTypes.GET_LOAD_SEARCH_MOVIES, getSearchMoviesSaga)
 }

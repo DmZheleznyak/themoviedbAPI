@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-
 import { Toolbar } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
-// import { getSearchMovies } from '../store/actions/actionCreators';
+
+import { getLoadSearchMovies } from '../store/actions/actionCreators';
 
 class Header extends Component {
 	state = {
@@ -22,21 +22,15 @@ class Header extends Component {
 	}
 
 	onSearchFieldChange( event ) {
-		console.log(`event.target - `, event.target.value)
 		this.setState({ searchField: event.target.value })
 	}
 
 	onButtonSearchClick() {
-		this.setState({ showModal: true })
-		console.log(`nameAsProps`, this.props.nameAsProps)
-
-		// // take search 
-		// // const getSearcMovies = () => 
-		// const requestSearchMovies = () =>
-		// 	axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&query=${this.state.searchField}&page=1&include_adult=false`)
-		// 	// .then( res => console.log( res ) )
-		// 	// .catch(err => console.log( err.message ))	
-		// this.props.getSearchMovies( requestSearchMovies )
+		// const searchFieldValue = this.state.searchField
+		// console.log(`searchFieldValue in Header: `, searchFieldValue )
+		const requestSearchMovies = () =>
+			axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&query=${this.state.searchField}&page=1&include_adult=false`)
+		this.props.getLoadSearchMovies( requestSearchMovies )
 	}
 
 	render () {
@@ -71,8 +65,8 @@ const mapStateToProps = state => ({
 	nameAsProps: state.popularMovieList
 })
 
-// const mapDispatchToProps = dispatch => ({
-// 	getSearchMovies: () => dispatch( getSearchMovies() )
-// })
+const mapDispatchToProps = dispatch => ({
+	getLoadSearchMovies: (requestSearchMovie) => dispatch( getLoadSearchMovies(requestSearchMovie) )
+})
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
