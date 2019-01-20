@@ -8,15 +8,11 @@ import Header from './header/Header'
 import CartOfMovie from './cartOfMovie/cartOfMovie'
 import InfoTheMovie from './infoTheMovie/InfoTheMovie'
 import ListSearch from './listSearchMovies/ListSearch'
-// https://github.com/rajdee/redux-in-russian/blob/master/docs/advanced/UsageWithReactRouter.md
+import Autentification from './components/Autentification/Autentification'
 
 import { getPopularMovie, getInfoMovie } from './store/actions/actionCreators'
 
 class App extends Component {
-	state = {
-		popMoviesList: []
-	}
-
 	componentDidMount() {
 		this.props.getPopularMovie()
 	}
@@ -34,7 +30,8 @@ class App extends Component {
 					<Route path='/' component={Header} />
 					<Route exact path='/' component={ListPopMovies} />
 					<Route path='/search' component={ListSearch} />
-					<Route path="/movie" component={InfoTheMovie} />							
+					<Route path="/movie" component={InfoTheMovie} />
+					<Route path='/autentification' component={Autentification} />							
 				</div>
 			</BrowserRouter>
     );
@@ -51,6 +48,4 @@ const mapDispatchToProps = dispatch => ({
 	getInfoMovie: () => dispatch( getInfoMovie() ),
 })
 
-
 export default connect( mapStateToProps, mapDispatchToProps )(App);
-// https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c

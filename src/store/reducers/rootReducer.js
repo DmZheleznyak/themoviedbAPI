@@ -6,7 +6,8 @@ const initialState = {
 	genreMovie: [],
 	infoMovie: {},
 	requestSearchMovie: null,
-	searchMovies: []
+	searchMovies: [],
+	autentification: false
 }
 
 const movieReducer = ( state = initialState, action ) => {

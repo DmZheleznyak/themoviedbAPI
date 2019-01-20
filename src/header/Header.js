@@ -53,14 +53,21 @@ class Header extends Component {
 						</Link>	
 					</form>
 					<p> { this.state.searchField } </p>
+					<Link to={`/autentification`}>
+						<Button>{this.props.autentification ? `Sign out` : `Sign in`}</Button>
+					</Link>
 				</Toolbar>						
 			</AppBar>
 		)
 	}
 }
 
+const mapStateToProps = state => ({
+	autentification: state.autentification
+})
+
 const mapDispatchToProps = dispatch => ({
 	getLoadSearchMovies: requestSearchMovies => dispatch( getLoadSearchMovies(requestSearchMovies) )
 })
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
