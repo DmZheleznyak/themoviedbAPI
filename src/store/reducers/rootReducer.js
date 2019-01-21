@@ -7,7 +7,8 @@ const initialState = {
 	infoMovie: {},
 	requestSearchMovie: null,
 	searchMovies: [],
-	autentification: false
+	autentification: false,
+	favoriteMovies: localStorage.favoriteMovies ? localStorage.favoriteMovies : []
 }
 
 const movieReducer = ( state = initialState, action ) => {

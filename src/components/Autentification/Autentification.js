@@ -19,6 +19,7 @@ const autentification = (props) => {
                 variant="outlined"
             />
             <TextField
+                error
                 id="outlined-password-input"
                 label="Password"
                 // className={classes.textField}

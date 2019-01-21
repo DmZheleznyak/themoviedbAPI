@@ -7,8 +7,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { Toolbar } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
+
+import SearchIcon from '@material-ui/icons/Search';
 
 import { getLoadSearchMovies } from '../store/actions/actionCreators';
 
@@ -53,6 +54,9 @@ class Header extends Component {
 						</Link>	
 					</form>
 					<p> { this.state.searchField } </p>
+					<Link to={'/favoriteMovies'} style={{ margin: '0 20px' }}>
+						<Button> Favorite Movies </Button>
+					</Link>
 					<Link to={`/autentification`}>
 						<Button>{this.props.autentification ? `Sign out` : `Sign in`}</Button>
 					</Link>
