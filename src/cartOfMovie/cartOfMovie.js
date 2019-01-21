@@ -48,7 +48,10 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 			<Typography> {listOfGenres} </Typography>
 			<Typography component="p">{ popMovie.overview }</Typography>
 			<CardActions>
-				<Button size="small" color="primary" onClick={() => addFavoriteMovie(popMovie.id)} >
+				<Button size="small" color="primary" onClick={() => {
+					console.log(props)
+					return props.addFavoriteMovie(popMovie.id)}
+				}  >
 					<FavoriteIcon />Share to Favorites
 					{/* here will check is in list favorite movies current movie or not
 					if yes change icons and words (Delete from Favorites) */}
