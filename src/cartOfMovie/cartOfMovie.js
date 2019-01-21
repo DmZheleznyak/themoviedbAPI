@@ -13,6 +13,7 @@ import FavoriteIcon from '@material-ui/icons/FavoriteBorder'
 // if movie has added in list favorite movie
 
 import { Link } from 'react-router-dom'
+import { addFavoriteMovie } from '../store/actions/actionCreators';
 
 function cartOfMovie( props ) {
 // creat showcart of the movie
@@ -47,8 +48,10 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 			<Typography> {listOfGenres} </Typography>
 			<Typography component="p">{ popMovie.overview }</Typography>
 			<CardActions>
-				<Button size="small" color="primary" >
-					<FavoriteIcon style={{ color: "yellow" }} />Share to Favourits
+				<Button size="small" color="primary" onClick={() => addFavoriteMovie(popMovie.id)} >
+					<FavoriteIcon />Share to Favorites
+					{/* here will check is in list favorite movies current movie or not
+					if yes change icons and words (Delete from Favorites) */}
 				</Button>
 				<Link to={`/movie/${popMovie.id}`}>
 					<Button size="small" color="primary">Read More</Button>
@@ -66,6 +69,10 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 	)
 }
 
-const CartOfMovie = connect()(cartOfMovie)
+const mapDispatchToProps = dispatch => ({
+	addFavoriteMovie: (id) => dispatch( addFavoriteMovie(id) )
+})
+
+const CartOfMovie = connect(null, mapDispatchToProps)(cartOfMovie)
 
 export default CartOfMovie

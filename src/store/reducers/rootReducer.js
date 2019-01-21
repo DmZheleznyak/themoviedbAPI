@@ -37,7 +37,14 @@ const movieReducer = ( state = initialState, action ) => {
 			return {
 				...state,
 				searchMovies: action.data
-			}		
+			}
+		case 'ADD_FAVORITE_MOVIE':
+		// localStorage.favoriteMovies.push( action.id )
+		console.log(`action.id `, action.id)
+			return {
+				...state,
+				// favoriteMovies: favoriteMovies.push( action.id )
+			}			
 		default:
 			return state	
 	}
