@@ -8,7 +8,7 @@ const initialState = {
 	requestSearchMovie: null,
 	searchMovies: [],
 	autentification: false,
-	favouriteMovies: localStorage.favouriteMovies ? localStorage.favouriteMovies : []
+	favouriteMovies: []
 }
 
 const movieReducer = ( state = initialState, action ) => {
@@ -39,14 +39,10 @@ const movieReducer = ( state = initialState, action ) => {
 				searchMovies: action.data
 			}
 		case 'ADD_FAVORITE_MOVIE':
-		console.log(`localStorage `, localStorage)
-		console.log(`typeof localStorage `,typeof localStorage)
-		localStorage.setItem('favouriteMovies', action.id)
-		console.log(`favourite:`, state.favouriteMovies)
-		console.log(`typeof favourite:`, typeof state.favouriteMovies)	
+			const returnFavouriteMovies = state.favouriteMovies
 			return {
 				...state,
-				...state.favouriteMovies.push( action.id )
+				...returnFavouriteMovies.push( action.id )
 			}			
 		default:
 			return state	
