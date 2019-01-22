@@ -40,10 +40,14 @@ const movieReducer = ( state = initialState, action ) => {
 			}
 		case 'ADD_FAVORITE_MOVIE':
 			const returnFavouriteMovies = state.favouriteMovies
-			return {
-				...state,
-				...returnFavouriteMovies.push( action.id )
-			}			
+			const setForCheck = new Set(returnFavouriteMovies)
+			if( !setForCheck.has(action.id) ) {
+				return {
+					...state,
+					...returnFavouriteMovies.push( action.id )
+				}
+			}
+			return state 	 			
 		default:
 			return state	
 	}

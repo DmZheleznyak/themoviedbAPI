@@ -37,7 +37,7 @@ class Header extends Component {
 			<AppBar position="static" style={{ height: "50px" }}>
 				<Toolbar>
 					<Typography variant="h5">
-						Star Collection
+						Stars Collection
 					</Typography>
 					<form 
 						style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} 
