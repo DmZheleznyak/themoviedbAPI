@@ -49,14 +49,9 @@ const movieReducer = ( state = initialState, action ) => {
 				favouriteMovies: [...setForCheck]
 			}
 		case 'REMOVE_FAVOURITE_MOVIE':
-			const returnRemoveFavouriteMovies = state.favouriteMovies
-			const setForDelete = new Set( returnRemoveFavouriteMovies )
-
-			if ( setForDelete.has(action.id) ) setForDelete.delete(action.id)
-			
 			return {
 				...state,
-				favouriteMovies: [...setForDelete]
+				favouriteMovies: state.favouriteMovies.filter( movieId => movieId !== action.id )
 			}			
 		default:
 			return state	
