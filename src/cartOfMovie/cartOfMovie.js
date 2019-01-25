@@ -7,9 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import AddedFavoriteIcon from '@material-ui/icons/Favorite' 
-// - change icon on this 
-// if movie has added in list favorite movie
-// import FavoriteIcon from '@material-ui/icons/FavoriteBorder'
+import FavoriteIcon from '@material-ui/icons/FavoriteBorder'
 
 import { Link } from 'react-router-dom'
 import { addFavouriteMovie, removeFavouriteMovie } from '../store/actions/actionCreators';
@@ -38,32 +36,44 @@ function cartOfMovie( props ) {
 
 	const RemoveButtonFavouriteMovie = (
 		<Button size="small" color="primary" onClick={() => props.removeFavouriteMovie(popMovie.id)}>
-			{/* <AddedFavoriteIcon /> */}
+			<AddedFavoriteIcon />
 			Delete from Favorites
 		</Button>
 	)	
 	const AddButtonFavouriteMovie = (
 		<Button size="small" color="primary" onClick={() => props.addFavouriteMovie(popMovie.id)}>
-			{/* <FavoriteIcon /> */}
+			<FavoriteIcon />
 			Share to Favorites
 		</Button>
 	)
 
-	const AddedFavoriteMovie = props.favouriteMovies.map(movieId => {
-		if (movieId === popMovie.id) return ( <AddedFavoriteIcon style={{ color: 'yellow' }} /> )
-	}  ) 
-	
-	// const ButtonFavouriteMovie = (addButton, removeButton ) => {
-	// 	if ( props.favouriteMovies.length === 0 ) return addButton
+	const AddFavouriteMovie = () => {
+		if ( props.favouriteMovies.length === 0 ) {
+			return (
+				<div>
+					{ AddButtonFavouriteMovie }
+				</div>
+			)
+		}
 
-	// 	for (let i = 0; i < props.favouriteMovies.length; i++) {
-	// 		if (popMovie.id !== props.favouriteMovies[i]) {
-	// 			return addButton
-	// 		} else {
-	// 			return removeButton
-	// 		}
-	// 	}
-	// }
+		if ( !props.favouriteMovies.includes(popMovie.id) ) {
+			return (
+				<div>
+					{ AddButtonFavouriteMovie }
+				</div>
+			)
+		}
+	}
+
+	const RemoveFavoriteMovie = props.favouriteMovies.map(movieId => {
+		if (movieId === popMovie.id) {
+			return ( 
+				<div>
+					{ RemoveButtonFavouriteMovie}
+				</div>
+			)	
+		} 
+	}  )
 			
 return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} >
 			<CardMedia
@@ -75,12 +85,11 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 			<Typography> {listOfGenres} </Typography>
 			<Typography component="p">{ popMovie.overview }</Typography>
 			<CardActions>
-				{ AddButtonFavouriteMovie }
-				{ AddedFavoriteMovie }
+				{ AddFavouriteMovie() }
+				{ RemoveFavoriteMovie }
 				<Link to={`/movie/${popMovie.id}`}>
 					<Button size="small" color="primary">Read More</Button>
 				</Link>
-				{ RemoveButtonFavouriteMovie }	
 			</CardActions>
 		</Card>
 	})
