@@ -54,7 +54,7 @@ class Header extends Component {
 						</Link>	
 					</form>
 					<p> { this.state.searchField } </p>
-					<Link to={'/favoriteMovies'} style={{ margin: '0 20px' }}>
+					<Link to={'/favouriteMovies'} style={{ margin: '0 20px' }}>
 						<Button> Favorite Movies </Button>
 					</Link>
 					<Link to={`/autentification`}>

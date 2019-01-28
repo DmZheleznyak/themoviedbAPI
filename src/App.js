@@ -9,6 +9,7 @@ import CartOfMovie from './cartOfMovie/cartOfMovie'
 import InfoTheMovie from './infoTheMovie/InfoTheMovie'
 import ListSearch from './listSearchMovies/ListSearch'
 import Autentification from './components/Autentification/Autentification'
+import ListFavouriteMovies from './components/ListFavouriteMovies/ListFavouriteMovies'
 
 import { getPopularMovie, getInfoMovie } from './store/actions/actionCreators'
 
@@ -31,7 +32,8 @@ class App extends Component {
 					<Route exact path='/' component={ListPopMovies} />
 					<Route path='/search' component={ListSearch} />
 					<Route path="/movie" component={InfoTheMovie} />
-					<Route path='/autentification' component={Autentification} />							
+					<Route path='/autentification' component={Autentification} />
+					<Route path='/favouriteMovies' component={ListFavouriteMovies} />							
 				</div>
 			</BrowserRouter>
     );

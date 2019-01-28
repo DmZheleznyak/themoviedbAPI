@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Card from '../../node_modules/@material-ui/core/Card';
+// import Card from '../../node_modules/@material-ui/core/Card';
+import Card from '../../../node_modules/@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom'
 
-function ListSearch(props) {
-  console.log(props.searchMovies)
-  const ListSearchMovies = props.searchMovies.map( movie =>
+function ListFavouriteMovies(props) {
+  console.log(props.favouriteMovies)
+
+  const FavouriteMovies = props.favouriteMovies.map( movie =>
     <Card key={ movie.id } 
           style={{
             display: `flex`,
@@ -40,15 +42,18 @@ function ListSearch(props) {
       </Link>	
 
     </Card> )
+
+
   return (
     <div>
-      { ListSearchMovies }
+      <Typography variant="h3">My favourite movies</Typography>
+      { FavouriteMovies }
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  searchMovies: state.searchMovies
+  favouriteMovies: state.favouriteMovies
 })
 
-export default connect( mapStateToProps )( ListSearch )
+export default connect( mapStateToProps )( ListFavouriteMovies )
