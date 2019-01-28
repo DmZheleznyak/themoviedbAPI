@@ -35,13 +35,13 @@ function cartOfMovie( props ) {
 	))
 
 	const RemoveButtonFavouriteMovie = (
-		<Button size="small" color="primary" onClick={() => props.removeFavouriteMovie(popMovie.id)}>
+		<Button size="small" color="primary" onClick={() => props.removeFavouriteMovie(popMovie)}>
 			<AddedFavoriteIcon />
 			Delete from Favorites
 		</Button>
 	)	
 	const AddButtonFavouriteMovie = (
-		<Button size="small" color="primary" onClick={() => props.addFavouriteMovie(popMovie.id)}>
+		<Button size="small" color="primary" onClick={() => props.addFavouriteMovie(popMovie)}>
 			<FavoriteIcon />
 			Share to Favorites
 		</Button>
@@ -56,7 +56,7 @@ function cartOfMovie( props ) {
 			)
 		}
 
-		if ( !props.favouriteMovies.includes(popMovie.id) ) {
+		if ( !props.favouriteMovies.some( movie => movie.id === popMovie.id ) ) {
 			return (
 				<div>
 					{ AddButtonFavouriteMovie }
@@ -65,8 +65,8 @@ function cartOfMovie( props ) {
 		}
 	}
 
-	const RemoveFavoriteMovie = props.favouriteMovies.map(movieId => {
-		if (movieId === popMovie.id) {
+	const RemoveFavoriteMovie = props.favouriteMovies.map(movie => {
+		if (movie.id === popMovie.id) {
 			return ( 
 				<div>
 					{ RemoveButtonFavouriteMovie}
@@ -108,8 +108,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	addFavouriteMovie: (id) => dispatch( addFavouriteMovie(id) ),
-	removeFavouriteMovie: (id) => dispatch( removeFavouriteMovie(id) )
+	addFavouriteMovie: (movie) => dispatch( addFavouriteMovie(movie) ),
+	removeFavouriteMovie: (movie) => dispatch( removeFavouriteMovie(movie) )
 })
 
 const CartOfMovie = connect(mapStateToProps, mapDispatchToProps)(cartOfMovie)

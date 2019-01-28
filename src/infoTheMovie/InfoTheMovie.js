@@ -28,7 +28,6 @@ class InfoTheMovie extends Component {
 	}
 
 	render() {
-		// console.log(`state in render::`, this.state)
 		const Genres = this.state.dataMovie.genres === undefined ? null :  this.state.dataMovie.genres.map( genre => (
 			<span key={ genre.id } > { genre.name } </span>
 		) )
@@ -71,8 +70,7 @@ class InfoTheMovie extends Component {
 					<span style={{ fontWeight: 'bold' }} >Recommendations:</span>
 					{ showRecomendationMovies }
 				</Typography>
-				<p> Enjoy your watch !</p>
-				
+				<p> Enjoy your watch !</p>			
 			</Card>
 		)
 	}

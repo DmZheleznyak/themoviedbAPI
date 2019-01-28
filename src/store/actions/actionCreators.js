@@ -18,12 +18,12 @@ export const getSearchMovies = data => ({
     data
 })
 
-export const addFavouriteMovie = id => ({
+export const addFavouriteMovie = movie => ({
     type: actionTypes.ADD_FAVOURITE_MOVIE,
-    id
+    movie
 })
 
-export const removeFavouriteMovie = id => ({
+export const removeFavouriteMovie = movie => ({
     type: actionTypes.REMOVE_FAVOURITE_MOVIE,
-    id
+    movie
 })

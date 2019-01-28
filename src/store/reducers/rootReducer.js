@@ -39,27 +39,17 @@ const movieReducer = ( state = initialState, action ) => {
 				searchMovies: action.data
 			}
 		case 'ADD_FAVOURITE_MOVIE':
-			// const returnAddFavouriteMovies = state.favouriteMovies
-			// const setForCheck = new Set(returnAddFavouriteMovies)
-
-			// if( !setForCheck.has(action.id) ) setForCheck.add(action.id)
-
-			// return {
-			// 	...state,
-			// 	favouriteMovies: [...setForCheck]
-			// }
-			const favouriteMovies = state.favouriteMovies.includes(action.id) 
-				? state.favouriteMovies 
-				: [...state.favouriteMovies, action.id]
-
-				return {
-					...state,
-					favouriteMovies
-				}
+		const favouriteMovies = state.favouriteMovies.some( movie => movie.id === action.movie.id )
+			? state.favouriteMovies 
+			: [...state.favouriteMovies, action.movie]
+			return {
+				...state,
+				favouriteMovies
+			}
 		case 'REMOVE_FAVOURITE_MOVIE':
 			return {
 				...state,
-				favouriteMovies: state.favouriteMovies.filter( movieId => movieId !== action.id )
+				favouriteMovies: state.favouriteMovies.filter( movie => movie.id !== action.movie.id )
 			}			
 		default:
 			return state	
