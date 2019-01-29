@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { connect } from 'react-redux'
 
 import Card from '../../node_modules/@material-ui/core/Card';
@@ -7,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom'
+
+import { getLoadMoreSearchMovies } from '../store/actions/actionCreators'
 
 function ListSearch(props) {
   console.log(props.searchMovies)
@@ -42,7 +45,10 @@ function ListSearch(props) {
     </Card> )
 
   const getMoreMovies = () => {
-      console.log(`getMoreMovies`)  
+    console.log(`getMoreMovies`)
+    const requestMoreSearchMovies = () =>
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&query=${props.searchField}&page=${props.currentPage}&include_adult=false`)  
+    props.getLoadMoreSearchMovies( requestMoreSearchMovies )
   }
 
   return (
@@ -67,4 +73,8 @@ const mapStateToProps = state => ({
   totalPages: state.totalPages
 })
 
-export default connect( mapStateToProps )( ListSearch )
+const mapDispatchToProps = dispatch => ({
+  getLoadMoreSearchMovies: requestMoreSearchMovies => dispatch( getLoadMoreSearchMovies( requestMoreSearchMovies ) )
+})
+
+export default connect( mapStateToProps, mapDispatchToProps )( ListSearch )

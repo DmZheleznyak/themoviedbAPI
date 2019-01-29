@@ -46,3 +46,11 @@ export function* getSearchMoviesSaga(action) {
 		console.log(error.message)
 	}
 }
+
+export function* getMoreSearchMoviesSaga(action) {
+	try {
+		console.log(`action in getMoreSearchMoviesSaga`, action)
+	} catch(error) {
+		console.log(error.message)
+	}
+}
