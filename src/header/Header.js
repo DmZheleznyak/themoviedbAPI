@@ -30,7 +30,7 @@ class Header extends Component {
 		const requestSearchMovies = () =>
 			axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&query=${this.state.searchField}&page=1&include_adult=false`)
 		console.log(`requestSearchMovies in header`, requestSearchMovies)	
-		this.props.getLoadSearchMovies( requestSearchMovies )
+		this.props.getLoadSearchMovies( requestSearchMovies, this.state.searchField )
 	}
 
 	render () {
@@ -72,7 +72,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	getLoadSearchMovies: requestSearchMovies => dispatch( getLoadSearchMovies(requestSearchMovies) )
+	getLoadSearchMovies: (requestSearchMovies, searchField) => dispatch( getLoadSearchMovies(requestSearchMovies, searchField) )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

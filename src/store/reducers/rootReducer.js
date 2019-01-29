@@ -6,6 +6,7 @@ const initialState = {
 	genreMovie: [],
 	infoMovie: {},
 	requestSearchMovie: null,
+	searchField: '',
 	searchMovies: [],
 	currentPage: null,
 	totalPages: null,
@@ -33,7 +34,8 @@ const movieReducer = ( state = initialState, action ) => {
 		case 'GET_LOAD_SEARCH_MOVIES':
 			return {
 				...state,
-				requestSearchMovie: action.requestSearchMovie
+				requestSearchMovie: action.requestSearchMovie,
+				searchField: action.searchField
 			}
 		case 'GET_SEARCH_MOVIES':
 			return {

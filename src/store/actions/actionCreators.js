@@ -8,9 +8,10 @@ export const getInfoMovie = () => ({
     type: actionTypes.GET_LOAD_INFO_MOVIE
 })
 
-export const getLoadSearchMovies = req => ({
+export const getLoadSearchMovies = ( req, searchField ) => ({
         type: actionTypes.GET_LOAD_SEARCH_MOVIES, 
-        requestSearchMovies: req 
+        requestSearchMovies: req,
+        searchField 
 })
 
 export const getSearchMovies = (data, currentPage, totalPages) => ({

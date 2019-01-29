@@ -42,11 +42,9 @@ function ListSearch(props) {
     </Card> )
 
   const getMoreMovies = () => {
-    // if (props.currentPage <= props.totalPages) {
-      console.log(`getMoreMovies`)
-    // }
-    
-  }  
+      console.log(`getMoreMovies`)  
+  }
+
   return (
     <div>
       { ListSearchMovies }
@@ -64,6 +62,7 @@ function ListSearch(props) {
 
 const mapStateToProps = state => ({
   searchMovies: state.searchMovies,
+  searchField: state.searchField,
   currentPage: state.currentPage,
   totalPages: state.totalPages
 })
