@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-// import Card from '../../node_modules/@material-ui/core/Card';
 import Card from '../../../node_modules/@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom'
+import { addFavouriteMovie, removeFavouriteMovie } from '../../store/actions/actionCreators'
 
 function ListFavouriteMovies(props) {
   console.log(props.favouriteMovies)
@@ -56,4 +56,9 @@ const mapStateToProps = state => ({
   favouriteMovies: state.favouriteMovies
 })
 
-export default connect( mapStateToProps )( ListFavouriteMovies )
+const mapDispatchToProps = dispatch => ({
+	addFavouriteMovie: (movie) => dispatch( addFavouriteMovie(movie) ),
+	removeFavouriteMovie: (movie) => dispatch( removeFavouriteMovie(movie) )
+})
+
+export default connect( mapStateToProps, mapDispatchToProps )( ListFavouriteMovies )

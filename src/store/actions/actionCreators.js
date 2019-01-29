@@ -13,9 +13,11 @@ export const getLoadSearchMovies = req => ({
         requestSearchMovies: req 
 })
 
-export const getSearchMovies = data => ({
+export const getSearchMovies = (data, currentPage, totalPages) => ({
     type: actionTypes.GET_SEARCH_MOVIES,
-    data
+    data,
+    currentPage,
+    totalPages
 })
 
 export const addFavouriteMovie = movie => ({

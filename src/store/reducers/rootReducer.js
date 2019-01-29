@@ -7,6 +7,8 @@ const initialState = {
 	infoMovie: {},
 	requestSearchMovie: null,
 	searchMovies: [],
+	currentPage: null,
+	totalPages: null,
 	autentification: false,
 	favouriteMovies: []
 }
@@ -36,7 +38,9 @@ const movieReducer = ( state = initialState, action ) => {
 		case 'GET_SEARCH_MOVIES':
 			return {
 				...state,
-				searchMovies: action.data
+				searchMovies: action.data,
+				currentPage: action.currentPage + 1,
+				totalPages: action.totalPages
 			}
 		case 'ADD_FAVOURITE_MOVIE':
 		const favouriteMovies = state.favouriteMovies.some( movie => movie.id === action.movie.id )

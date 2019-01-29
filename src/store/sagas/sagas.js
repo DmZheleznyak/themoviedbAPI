@@ -38,8 +38,10 @@ export function* getGenreMovieSaga() {
 
 export function* getSearchMoviesSaga(action) {
 	try {
+		console.log(`action in getSearchMoviesSaga`, action)
 		const result = yield call( action.requestSearchMovies )
-		yield put( getSearchMovies( result.data.results ) )
+		console.log(`result in saga search`, result)
+		yield put( getSearchMovies( result.data.results, result.data.page, result.data.total_pages ) )
 	} catch(error) {
 		console.log(error.message)
 	}

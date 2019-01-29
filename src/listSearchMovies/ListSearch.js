@@ -40,15 +40,32 @@ function ListSearch(props) {
       </Link>	
 
     </Card> )
+
+  const getMoreMovies = () => {
+    // if (props.currentPage <= props.totalPages) {
+      console.log(`getMoreMovies`)
+    // }
+    
+  }  
   return (
     <div>
       { ListSearchMovies }
+      { (props.currentPage < props.totalPages) ?
+        <Button 
+          color="primary" 
+          style={{ margin: "30px auto" }}
+          onClick={ getMoreMovies } >I haven't choiced, pleace more movies</Button> :
+        <Typography variant="h4" style={{ margin: "30px auto" }}> This is the End ! </Typography>
+      }
+      
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  searchMovies: state.searchMovies
+  searchMovies: state.searchMovies,
+  currentPage: state.currentPage,
+  totalPages: state.totalPages
 })
 
 export default connect( mapStateToProps )( ListSearch )
