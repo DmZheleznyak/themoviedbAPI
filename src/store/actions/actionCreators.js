@@ -26,6 +26,12 @@ export const getLoadMoreSearchMovies = req => ({
     requestMoreSearchMovies: req
 })
 
+export const getMoreSearchMovies = (data, currentPage, totalPages) => ({
+    type: actionTypes.GET_MORE_SEARCH_MOVIES,
+    data,
+    currentPage,
+    totalPages
+})
 
 
 export const addFavouriteMovie = movie => ({

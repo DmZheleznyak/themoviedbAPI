@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects'
 import axios from 'axios'
 
-import { getSearchMovies } from '../actions/actionCreators'
+import { getSearchMovies, getMoreSearchMovies } from '../actions/actionCreators'
 
 const requestPopularMovie = () => 
 	axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&page=1')
@@ -38,9 +38,7 @@ export function* getGenreMovieSaga() {
 
 export function* getSearchMoviesSaga(action) {
 	try {
-		console.log(`action in getSearchMoviesSaga`, action)
 		const result = yield call( action.requestSearchMovies )
-		console.log(`result in saga search`, result)
 		yield put( getSearchMovies( result.data.results, result.data.page, result.data.total_pages ) )
 	} catch(error) {
 		console.log(error.message)
@@ -49,7 +47,8 @@ export function* getSearchMoviesSaga(action) {
 
 export function* getMoreSearchMoviesSaga(action) {
 	try {
-		console.log(`action in getMoreSearchMoviesSaga`, action)
+		const result = yield call( action.requestMoreSearchMovies )
+		yield put( getMoreSearchMovies( result.data.results, result.data.page, result.data.total_pages ) )
 	} catch(error) {
 		console.log(error.message)
 	}

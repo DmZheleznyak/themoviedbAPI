@@ -44,6 +44,13 @@ const movieReducer = ( state = initialState, action ) => {
 				currentPage: action.currentPage + 1,
 				totalPages: action.totalPages
 			}
+		case 'GET_MORE_SEARCH_MOVIES':
+			return {
+				...state,
+				searchMovies: [ ...state.searchMovies , ...action.data],
+				currentPage: action.currentPage + 1,
+				totalPages: action.totalPages
+			}	
 		case 'ADD_FAVOURITE_MOVIE':
 		const favouriteMovies = state.favouriteMovies.some( movie => movie.id === action.movie.id )
 			? state.favouriteMovies 

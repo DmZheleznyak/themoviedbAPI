@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 import { getLoadMoreSearchMovies } from '../store/actions/actionCreators'
 
 function ListSearch(props) {
-  console.log(props.searchMovies)
+
   const ListSearchMovies = props.searchMovies.map( movie =>
     <Card key={ movie.id } 
           style={{
@@ -21,7 +21,6 @@ function ListSearch(props) {
             margin: "0 auto",
             marginTop: "14px"
           }}>
-
       <CardMedia
 				style={{ width: "150px", height: `150px` }}
 				image={ 'https://image.tmdb.org/t/p/w500' + movie.poster_path }  
@@ -41,11 +40,9 @@ function ListSearch(props) {
       <Link to={`/movie/${movie.id}`} onClick={()=> console.log('AU')}>
         <Button size="small" color="primary">Read More</Button>
       </Link>	
-
     </Card> )
 
   const getMoreMovies = () => {
-    console.log(`getMoreMovies`)
     const requestMoreSearchMovies = () =>
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e842780f24447ce021759d2711fd23ce&language=en-US&query=${props.searchField}&page=${props.currentPage}&include_adult=false`)  
     props.getLoadMoreSearchMovies( requestMoreSearchMovies )
@@ -61,7 +58,6 @@ function ListSearch(props) {
           onClick={ getMoreMovies } >I haven't choiced, pleace more movies</Button> :
         <Typography variant="h4" style={{ margin: "30px auto" }}> This is the End ! </Typography>
       }
-      
     </div>
   )
 }
