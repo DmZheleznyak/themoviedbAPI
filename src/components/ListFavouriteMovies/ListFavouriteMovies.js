@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom'
 import { addFavouriteMovie, removeFavouriteMovie } from '../../store/actions/actionCreators'
+import { RemoveFavoriteMovie } from '../UI/ButtonsFavouriteMovies/ButtonsFavouriteMovies'
 
 function ListFavouriteMovies(props) {
   console.log(props.favouriteMovies)
@@ -37,6 +38,7 @@ function ListFavouriteMovies(props) {
           Vote average - { movie.vote_average }  
         </Typography>
       </div>
+      { RemoveFavoriteMovie(props.favouriteMovies, movie, props.removeFavouriteMovie) }
       <Link to={`/movie/${movie.id}`} onClick={()=> console.log('AU')}>
         <Button size="small" color="primary">Read More</Button>
       </Link>	

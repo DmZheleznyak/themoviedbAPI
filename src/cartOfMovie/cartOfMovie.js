@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import AddedFavoriteIcon from '@material-ui/icons/Favorite' 
 import FavoriteIcon from '@material-ui/icons/FavoriteBorder'
 
+import { AddFavouriteMovie, RemoveFavoriteMovie } from '../components/UI/ButtonsFavouriteMovies/ButtonsFavouriteMovies'
 import { Link } from 'react-router-dom'
 import { addFavouriteMovie, removeFavouriteMovie } from '../store/actions/actionCreators';
 
@@ -34,46 +35,6 @@ function cartOfMovie( props ) {
 		<Typography gutterBottom component="span"> { genre } </Typography>
 	))
 
-	const RemoveButtonFavouriteMovie = (
-		<Button size="small" color="primary" onClick={() => props.removeFavouriteMovie(popMovie)}>
-			<AddedFavoriteIcon />
-			Delete from Favorites
-		</Button>
-	)	
-	const AddButtonFavouriteMovie = (
-		<Button size="small" color="primary" onClick={() => props.addFavouriteMovie(popMovie)}>
-			<FavoriteIcon />
-			Share to Favorites
-		</Button>
-	)
-
-	const AddFavouriteMovie = () => {
-		if ( props.favouriteMovies.length === 0 ) {
-			return (
-				<div>
-					{ AddButtonFavouriteMovie }
-				</div>
-			)
-		}
-
-		if ( !props.favouriteMovies.some( movie => movie.id === popMovie.id ) ) {
-			return (
-				<div>
-					{ AddButtonFavouriteMovie }
-				</div>
-			)
-		}
-	}
-
-	const RemoveFavoriteMovie = props.favouriteMovies.map(movie => {
-		if (movie.id === popMovie.id) {
-			return ( 
-				<div>
-					{ RemoveButtonFavouriteMovie}
-				</div>
-			)	
-		} 
-	}  )
 			
 return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} >
 			<CardMedia
@@ -85,8 +46,8 @@ return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} 
 			<Typography> {listOfGenres} </Typography>
 			<Typography component="p">{ popMovie.overview }</Typography>
 			<CardActions>
-				{ AddFavouriteMovie() }
-				{ RemoveFavoriteMovie }
+				{ AddFavouriteMovie(props.favouriteMovies, popMovie, props.addFavouriteMovie) }
+				{ RemoveFavoriteMovie(props.favouriteMovies, popMovie, props.removeFavouriteMovie) }
 				<Link to={`/movie/${popMovie.id}`}>
 					<Button size="small" color="primary">Read More</Button>
 				</Link>

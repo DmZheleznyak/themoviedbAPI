@@ -8,7 +8,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom'
+import { addFavouriteMovie, removeFavouriteMovie } from '../store/actions/actionCreators'
 
+import { AddFavouriteMovie, RemoveFavoriteMovie } from '../components/UI/ButtonsFavouriteMovies/ButtonsFavouriteMovies'
 import { getLoadMoreSearchMovies } from '../store/actions/actionCreators'
 
 function ListSearch(props) {
@@ -37,6 +39,8 @@ function ListSearch(props) {
           Vote average - { movie.vote_average }  
         </Typography>
       </div>
+      { AddFavouriteMovie(props.favouriteMovies, movie, props.addFavouriteMovie) }
+      { RemoveFavoriteMovie(props.favouriteMovies, movie, props.removeFavouriteMovie) }
       <Link to={`/movie/${movie.id}`} onClick={()=> console.log('AU')}>
         <Button size="small" color="primary">Read More</Button>
       </Link>	
@@ -66,11 +70,14 @@ const mapStateToProps = state => ({
   searchMovies: state.searchMovies,
   searchField: state.searchField,
   currentPage: state.currentPage,
-  totalPages: state.totalPages
+  totalPages: state.totalPages,
+  favouriteMovies: state.favouriteMovies
 })
 
 const mapDispatchToProps = dispatch => ({
-  getLoadMoreSearchMovies: requestMoreSearchMovies => dispatch( getLoadMoreSearchMovies( requestMoreSearchMovies ) )
+  getLoadMoreSearchMovies: requestMoreSearchMovies => dispatch( getLoadMoreSearchMovies( requestMoreSearchMovies ) ),
+  addFavouriteMovie: (movie) => dispatch( addFavouriteMovie(movie) ),
+	removeFavouriteMovie: (movie) => dispatch( removeFavouriteMovie(movie) )
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( ListSearch )
