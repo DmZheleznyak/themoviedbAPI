@@ -39,7 +39,7 @@ class InfoTheMovie extends Component {
 			}
 		}
 		const showRecomendationMovies = recomendationMovies.map( movie => (
-			<span> { movie } <br/></span>
+			<span> { movie } </span>
 		))
 
 // will show data like:
@@ -48,29 +48,30 @@ class InfoTheMovie extends Component {
 		// console.log(releaseDate)
 
 		return (
-			<Card>
-				<Typography variant='h2'>{ this.state.dataMovie.title }</Typography>
-				<CardMedia 
-					style={{ margin: '0 auto', height: `350px`, width: '400px' }}
-					image={ 'https://image.tmdb.org/t/p/w500' + this.state.dataMovie.backdrop_path }
-					title = 'mainImg' />
-				<Typography component="p">
-					Budget: { this.state.dataMovie.budget }$, Vote: { this.state.dataMovie.vote_average }
-				</Typography>
-				<Typography>
-					<span style={{ fontWeight: 'bold' }} >Genres:</span> { Genres }
-				</Typography>
-				<Typography component="p">
-					{ this.state.dataMovie.overview }
+			<Card style={{ width: '80%', margin: '2% auto', textAlign: 'left' }}>
+				<div style={{ width: '80%', margin: '2% auto' }}>
+					<Typography variant='h2' style={{ marginBottom: '20px', marginTop: '10px', textAlign: 'center' }}>{ this.state.dataMovie.title }</Typography>
+					<CardMedia 
+						style={{ margin: '10px auto', height: `350px`, width: '400px' }}
+						image={ 'https://image.tmdb.org/t/p/w500' + this.state.dataMovie.backdrop_path }
+						title = 'mainImg' />
 					<Typography component="p">
-						Release Date: { this.state.dataMovie.release_date }
-					</Typography>		
-				</Typography>
-				<Typography component="p">
-					<span style={{ fontWeight: 'bold' }} >Recommendations:</span>
-					{ showRecomendationMovies }
-				</Typography>
-				<p> Enjoy your watch !</p>			
+						<span style={{ fontWeight: 'bold' }}>Budget:</span> { this.state.dataMovie.budget }$<br/> 
+						<span style={{ fontWeight: 'bold' }}>Vote:</span> { this.state.dataMovie.vote_average }<br/>
+						<span style={{ fontWeight: 'bold' }}>Release Date:</span> { this.state.dataMovie.release_date }
+					</Typography>
+					<Typography>
+						<span style={{ fontWeight: 'bold' }}>Genres:</span> { Genres }
+					</Typography>
+					<Typography component="p" style={{ width: '90%', margin: '10px auto' }}>
+						<Typography variant="h4">Describe</Typography>
+						{ this.state.dataMovie.overview }		
+					</Typography>
+					<Typography component="p">
+						<span style={{ fontWeight: 'bold' }} >Recommendations:</span> { showRecomendationMovies }
+					</Typography>
+					<p> Enjoy your watch !</p>
+				</div>				
 			</Card>
 		)
 	}

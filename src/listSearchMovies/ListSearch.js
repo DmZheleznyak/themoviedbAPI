@@ -19,31 +19,35 @@ function ListSearch(props) {
     <Card key={ movie.id } 
           style={{
             display: `flex`,
-            width: "90%",
+            width: "98%",
             margin: "0 auto",
-            marginTop: "14px"
+            marginTop: "14px",
+            alignItems: 'center',
+            justifyContent: 'space-between'
           }}>
       <CardMedia
-				style={{ width: "150px", height: `150px` }}
+				style={{ width: "200px", height: `200px` }}
 				image={ 'https://image.tmdb.org/t/p/w500' + movie.poster_path }  
 				title="Contemplative Reptile"	/>
-      <div>
+      <div style={{ width: "50%"}}>
         <Typography variant="h4"> {movie.title} </Typography>
-        <Typography component="p"> {movie.overview} </Typography>    
+        <Typography component="p" style={{ width: '80%', margin: '0 auto', paddingTop: '2%', paddingBottom: '2%', textAlign: 'left' }}> {movie.overview} </Typography>    
       </div>
-      <div>
+      <div style={{ width: "20%"}}>
         <Typography component="p">
-            Release date - { movie.release_date }
+            Release date - <strong>{ movie.release_date }</strong>
         </Typography>
         <Typography component="p" >
-          Vote average - { movie.vote_average }  
+          Vote average - <strong>{ movie.vote_average }</strong>  
         </Typography>
       </div>
-      { AddFavouriteMovie(props.favouriteMovies, movie, props.addFavouriteMovie) }
-      { RemoveFavoriteMovie(props.favouriteMovies, movie, props.removeFavouriteMovie) }
-      <Link to={`/movie/${movie.id}`} onClick={()=> console.log('AU')}>
-        <Button size="small" color="primary">Read More</Button>
-      </Link>	
+      <div style={{ width: "20%"}}>
+        { AddFavouriteMovie(props.favouriteMovies, movie, props.addFavouriteMovie) }
+        { RemoveFavoriteMovie(props.favouriteMovies, movie, props.removeFavouriteMovie) }
+        <Link to={`/movie/${movie.id}`} onClick={()=> console.log('AU')}>
+          <Button size="small" color="primary">Read More</Button>
+        </Link>
+      </div>	
     </Card> )
 
   const getMoreMovies = () => {

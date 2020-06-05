@@ -32,31 +32,34 @@ function cartOfMovie( props ) {
 				})
 		})
 	const listOfGenres = genreNames.map(genre => (
-		<Typography gutterBottom component="span"> { genre } </Typography>
+		<span key={ genre.id }>  { genre }  </span> 
 	))
 
 			
-return <Card key={ popMovie.id } style={{ width: `32%`, marginBottom: '10px' }} >
+return <Card key={ popMovie.id } style={{ width: `30%`, marginBottom: '2%' }} >
 			<CardMedia
 				style={{ height: `200px` }}
 				image={ 'https://image.tmdb.org/t/p/w500' + popMovie.poster_path }  
 				title="Contemplative Reptile"	/>				
 			<Typography gutterBottom variant="h4">{ popMovie.title }</Typography>
-			<Typography gutterBottom variant="h6"> Genres: </Typography>
-			<Typography> {listOfGenres} </Typography>
-			<Typography component="p">{ popMovie.overview }</Typography>
-			<CardActions>
-				{ AddFavouriteMovie(props.favouriteMovies, popMovie, props.addFavouriteMovie) }
-				{ RemoveFavoriteMovie(props.favouriteMovies, popMovie, props.removeFavouriteMovie) }
-				<Link to={`/movie/${popMovie.id}`}>
-					<Button size="small" color="primary">Read More</Button>
-				</Link>
-			</CardActions>
+			<Typography gutterBottom variant="h6">  </Typography>
+			<Typography><span style={{ fontWeight: 'bold' }}>Genres:</span> {listOfGenres} </Typography>
+			<Typography variant="h4">Describe</Typography>
+			<Typography component="p" style={{ width: `90%`, margin: '10px auto', textAlign: 'left'}}>{ popMovie.overview }</Typography>
+			<div style={{ bottom: '0' }}>
+				<CardActions>
+					{ AddFavouriteMovie(props.favouriteMovies, popMovie, props.addFavouriteMovie) }
+					{ RemoveFavoriteMovie(props.favouriteMovies, popMovie, props.removeFavouriteMovie) }
+					<Link to={`/movie/${popMovie.id}`}>
+						<Button size="small" color="primary">Read More</Button>
+					</Link>
+				</CardActions>
+			</div>
 		</Card>
 	})
 	
 	return (
-		<div style={{ width: `100%`, margin: '0 auto' }}>
+		<div style={{ width: `90%`, margin: '0 auto' }}>
 			<ul style={{ display: `flex`, flexWrap: `wrap`, justifyContent: 'space-between' }}>
 				{ popMovies }
 			</ul>

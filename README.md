@@ -1,5 +1,4 @@
-Hello , Amico !
-Enjoy my code :)
+https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id
 
 Helper links:
 https://github.com/rajdee/redux-in-russian/blob/master/docs/advanced/UsageWithReactRouter.md
