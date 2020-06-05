@@ -26,7 +26,7 @@ class App extends Component {
 		)
 
     return (
-			<BrowserRouter>
+			<BrowserRouter basename="/redux-saga.movieAPI">
 				<div className="App">
 					<Route path='/' component={Header} />
 					<Route exact path='/' component={ListPopMovies} />
