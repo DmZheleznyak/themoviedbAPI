@@ -20,7 +20,7 @@ class App extends Component {
 
 	render() {
 		const ListPopMovies = () => (
-			<CartOfMovie 
+			<CartOfMovie
 				popMovies={this.props.popularMovieList}
 				genreMovie={this.props.genreMovie} />
 		)

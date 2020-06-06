@@ -18,7 +18,6 @@ const AddButtonFavouriteMovie = (add, movieFromCurrentList) => (
 )
 
 export const AddFavouriteMovie = (favouriteMovies, movieFromCurrentList, add) => {
-    console.log(`in addButton current movie`, movieFromCurrentList)
     if ( favouriteMovies.length === 0 ) {
         return (
             <div>
