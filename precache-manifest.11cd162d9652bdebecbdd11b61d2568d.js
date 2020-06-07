@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/themoviedbAPI/static/js/runtime~main.9050ef4c.js"
   },
   {
-    "revision": "25349b9d3d2d9028f77b",
-    "url": "/themoviedbAPI/static/js/main.25349b9d.chunk.js"
+    "revision": "353ad0ac9610b1fcd96f",
+    "url": "/themoviedbAPI/static/js/main.353ad0ac.chunk.js"
   },
   {
     "revision": "cd2feff09699ff166f3f",
     "url": "/themoviedbAPI/static/js/1.cd2feff0.chunk.js"
   },
   {
-    "revision": "25349b9d3d2d9028f77b",
+    "revision": "353ad0ac9610b1fcd96f",
     "url": "/themoviedbAPI/static/css/main.f4df65aa.chunk.css"
   },
   {
-    "revision": "b622e11073929e6729960b92360e68e6",
+    "revision": "5f21cd5da56adc76ff244cee15a7d0f4",
     "url": "/themoviedbAPI/index.html"
   }
 ];
