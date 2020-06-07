@@ -15,25 +15,81 @@ import { getLoadMoreSearchMovies } from '../store/actions/actionCreators'
 
 function ListSearch(props) {
 
+  const styleCard = () => {
+		if (window.matchMedia("(max-width: 900px)").matches) {
+			return {
+        display: `flex`,
+        width: "92%",
+        margin: "0 auto",
+        marginTop: "14px",
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'column'
+      }
+		} else {
+			return {
+        display: `flex`,
+        width: "92%",
+        margin: "0 auto",
+        marginTop: "14px",
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }
+		}		
+  }
+
+  const styleText = () => {
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      return {
+        width: "90%"
+      }
+    } else {
+      return {
+        width: "50%"
+      }
+    }
+  }
+
+  const styleDateAverage = () => {
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      return {
+        width: "80%"
+      }
+    } else {
+      return {
+        width: "20%"
+      }
+    }
+  }
+
+  const styleButton = () => {
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      return {
+        width: "90%"
+      }
+    } else {
+      return {
+        width: "20%"
+      }
+    }
+  }
+
   const ListSearchMovies = props.searchMovies.map( movie =>
     <Card key={ movie.id } 
-          style={{
-            display: `flex`,
-            width: "98%",
-            margin: "0 auto",
-            marginTop: "14px",
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}>
+          style={ styleCard() }>
       <CardMedia
 				style={{ width: "200px", height: `200px` }}
 				image={ 'https://image.tmdb.org/t/p/w500' + movie.poster_path }  
 				title="Contemplative Reptile"	/>
-      <div style={{ width: "50%"}}>
+      <div style={ styleText() }>
         <Typography variant="h4"> {movie.title} </Typography>
-        <Typography component="p" style={{ width: '80%', margin: '0 auto', paddingTop: '2%', paddingBottom: '2%', textAlign: 'left' }}> {movie.overview} </Typography>    
+        <Typography component="p" style={{ width: '80%', margin: '0 auto', paddingTop: '2%', paddingBottom: '2%', textAlign: 'left' }}>
+            {
+              (movie.overview.lenght < 300) ? movie.overview : movie.overview.slice(0, 300) + `...`
+            } 
+        </Typography>    
       </div>
-      <div style={{ width: "20%"}}>
+      <div style={ styleDateAverage() }>
         <Typography component="p">
             Release date - <strong>{ movie.release_date }</strong>
         </Typography>
@@ -41,7 +97,7 @@ function ListSearch(props) {
           Vote average - <strong>{ movie.vote_average }</strong>  
         </Typography>
       </div>
-      <div style={{ width: "20%"}}>
+      <div style={ styleButton() }>
         { AddFavouriteMovie(props.favouriteMovies, movie, props.addFavouriteMovie) }
         { RemoveFavoriteMovie(props.favouriteMovies, movie, props.removeFavouriteMovie) }
         <Link to={`/movie/${movie.id}`} onClick={()=> console.log('AU')}>

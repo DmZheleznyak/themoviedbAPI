@@ -13,7 +13,7 @@ const store = createStore(
     compose(	
         applyMiddleware( sagaMiddleware ), 
         persistState(), 
-        reduxDevTools	
+        // reduxDevTools	
         )	
 )
 

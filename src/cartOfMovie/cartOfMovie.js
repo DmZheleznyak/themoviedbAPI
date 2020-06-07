@@ -76,7 +76,7 @@ function cartOfMovie( props ) {
 	
 	return (
 		<div style={{ width: `98%`, margin: '0 auto' }}>
-			<Typography variant="h3" style={{ margin: '1% auto' }} >
+			<Typography variant="h4" style={{ margin: '1% auto' }} >
 				The most popular movies
 			</Typography>
 			<ul style={ styleListOfCards() }>

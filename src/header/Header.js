@@ -34,18 +34,38 @@ class Header extends Component {
 	}
 
 	render () {
+		const styleMainName = () => {
+			if (window.matchMedia("(max-width: 600px)").matches) {
+				return {
+					display: "none"
+				}
+			}
+		}
+
+		const styleButtonFavouriteMovies = () => {
+			if (window.matchMedia("(max-width: 600px)").matches) {
+				return {
+					margin: '0'
+				}
+			} else {
+				return {
+					margin: '0 20px'
+				}
+			}
+		}
+		
 		return (
-			<AppBar position="static" style={{ height: "70px" }}>
+			<AppBar position="static" style={{ height: "60px" }}>
 				<Toolbar style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<Link to={'/'}>
+					<Link to={'/'} style={ styleMainName() }>
 						<Button><Typography variant="h5">Stars Collection</Typography></Button>
 					</Link>
-					<Link to={'/favouriteMovies'} style={{ margin: '0 20px' }}>
+					<Link to={'/favouriteMovies'} style={ styleButtonFavouriteMovies() }>
 						<Button> Favorite Movies </Button>
 					</Link>
-					<Link to={`/autentification`}>
+					{/* <Link to={`/autentification`}>
 						<Button>{this.props.autentification ? `Sign out` : `Sign in`}</Button>
-					</Link>
+					</Link> */}
 					<form 
 						style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} 
 						onSubmit={ this.onFormSubmit }>
